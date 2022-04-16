@@ -1,0 +1,153 @@
+<div class="con container-fluid" style="margin-top:80px">
+        <div class="row row-cols-2 ">
+            <div class="col">
+                <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header bg-dark  ">
+                    <h4 class="modal-title btn btn-danger">Paneer Masala</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                  <img src="thumnail.jpg" alt="Los Angeles" class=" w-100 img-fluid" style="height: 300px;">
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer bg-dark">
+                  <div class="d-flex justify-content-between  mb-3">
+                   <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                    
+                  </div>
+                </div>
+
+                </div>
+            </div>
+            <div class="col">
+
+                <div class="modal-content">
+
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">Modal Heading</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+    
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                      <img src="thumnail.jpg" alt="Los Angeles" class=" w-100 img-fluid" style="height: 300px;">
+                    </div>
+    
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                    </div>
+    
+                </div>
+            </div>
+            <div class="col">
+
+                <div class="modal-content ">
+
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">Modal Heading</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+    
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        Modal body..
+                    </div>
+    
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                    </div>
+    
+                    </div>
+            </div>
+            <div class="col">
+                <div class="modal-content ">
+
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">Modal Heading</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+    
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <div class="row row-cols-1">
+                            <div class="col">
+                                <div class="d-flex justify-content-between  mb-3 alert alert-success">
+                                    <div class="p-2 bg-info">Flex item 1</div>
+                                    <div class="p-2 bg-warning">Flex item 2</div>
+                                    <div class="p-2 bg-primary">Flex item 3</div>
+                                  </div>
+                                  <div class="d-flex justify-content-between  mb-3">
+                                    <div class="p-2 bg-info">Flex item 1</div>
+                                    <div class="p-2 bg-warning">Flex item 2</div>
+                                    <div class="p-2 bg-primary">Flex item 3</div>
+                                  </div>
+                                  <div class="d-flex justify-content-between  mb-3">
+                                    <div class="p-2 bg-info">Flex item 1</div>
+                                    <div class="p-2 bg-warning">Flex item 2</div>
+                                    <div class="p-2 bg-primary">Flex item 3</div>
+                                  </div>
+                                  <div class="d-flex justify-content-between  mb-3">
+                                    <div class="p-2 bg-info">Flex item 1</div>
+                                    <div class="p-2 bg-warning">Flex item 2</div>
+                                    <div class="p-2 bg-primary">Flex item 3</div>
+                                  </div>
+                                  <div class="d-flex justify-content-between  mb-3">
+                                    <div class="p-2 bg-info">Flex item 1</div>
+                                    <div class="p-2 bg-warning">Flex item 2</div>
+                                    <div class="p-2 bg-primary">Flex item 3</div>
+                                  </div>
+                                  <div class="d-flex justify-content-between  mb-3">
+                                    <div class="p-2 bg-info">Flex item 1</div>
+                                    <div class="p-2 bg-warning">Flex item 2</div>
+                                    <div class="p-2 bg-primary">Flex item 3</div>
+                                  </div>
+
+                              
+                          </div>
+                    </div>
+    
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                    </div>
+    
+                    </div>
+            </div>
+    </div>
+
+    <div class="price">
+
+        <div class="row row-cols-1">
+            <div class="col">
+                <div class="d-flex justify-content-between  mb-3">
+                <div class="p-2 bg-info">Flex item 1</div>
+                <div class="p-2 bg-warning">Flex item 2</div>
+                <div class="p-2 bg-primary">Flex item 3</div>
+              </div>
+            </div>
+            <div class="col">
+                <div class="d-flex justify-content-between  mb-3">
+                <div class="p-2 bg-info">Flex item 1</div>
+                <div class="p-2 bg-warning">Flex item 2</div>
+                <div class="p-2 bg-primary">Flex item 3</div>
+              </div>
+            </div>
+          </div>
+    </div>
+
+
+
+
+
+      </div>
