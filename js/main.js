@@ -1,9 +1,6 @@
 $(document).ready(function()
 {
-   document.addEventListener("click",function(e)
-   {
-        console.log(e);
-   });
+   
     $("#btn-close-model").on("click",function()
     {
         $('#myModal').modal('toggle');
@@ -16,12 +13,14 @@ $(document).ready(function()
         let Uemail = document.getElementById("signup_email").value;
         let Upassword = document.getElementById("signup_pwd").value;
         let U_con_assword = document.getElementById("signup_confirm_pwd").value;
+        let Uloaction = document.getElementById("Location").value;
 
         let obj = {
             Uname,
             Uemail,
             Upassword,
-            U_con_assword
+            U_con_assword,
+            Uloaction
         }
         fetch('php/signup.php', 
         {
@@ -50,9 +49,18 @@ $(document).ready(function()
             },
         })
         .then((response) => response.json())
-        .then((json) => location.replace("products_page.html"));
+        .then((json) => location.assign("products_page.html"));
     })
-   
+
+    // $(".content").click(function()
+    // {
+    //     $("button.navbar-toggler").click();
+    //     // $("button.navbar-toggler").fadeOut("slow");
+    // });
+    $('.content').on('click', function(){
+        $('.navbar-collapse').collapse('hide');
+    });
+
     
 });
 
