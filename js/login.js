@@ -27,7 +27,8 @@ $(document).ready(function()
             document.getElementById("login_email_val").style.display = "block";
             return;  
         }
-        
+        $("#login_email").val("");
+        $("#login_pwd").val("");
         
         // fetach function here
         location.assign("products_page.html")

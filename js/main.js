@@ -5,36 +5,7 @@ $(document).ready(function()
     {
         $('#myModal').modal('toggle');
     });
-    $("#signup_button").on("click",function()
-    {
-        
-        $('#myModal').modal('show');
-        let Uname = document.getElementById("signup_name").value;
-        let Uemail = document.getElementById("signup_email").value;
-        let Upassword = document.getElementById("signup_pwd").value;
-        let U_con_assword = document.getElementById("signup_confirm_pwd").value;
-        let Uloaction = document.getElementById("Location").value;
-
-        let obj = {
-            Uname,
-            Uemail,
-            Upassword,
-            U_con_assword,
-            Uloaction
-        }
-        fetch('php/signup.php', 
-        {
-            method: 'POST',
-            body: JSON.stringify(obj),
-            headers: {
-                'Content-type': 'application/json',
-            },
-        })
-        .then((response) => response.json())
-        .then((json) => console.log(json));
-
-
-    });
+    
 
     $("#btn-close-model").on("click",function()
     {

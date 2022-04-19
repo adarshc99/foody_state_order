@@ -106,23 +106,28 @@
                   <div class="mb-3">
                     <label for="pwd">Name:</label>
                     <input type="text" class="form-control" id="signup_name" placeholder="Enter Name" name="pswd">
+                     <div class="invalid-feedback text-danger" id="signup_name_val"></div>
                   </div>
                   <div class="mb-3 mt-3">
                     <label for="email">Email:</label>
                     <input type="email" class="form-control" id="signup_email" placeholder="Enter email" name="email">
+                     <div class="invalid-feedback text-danger" id="signup_email_val"></div>
                   </div>
                   <div class="mb-3">
                     <label for="pwd">Password:</label>
                     <input type="password" class="form-control" id="signup_pwd" placeholder="Enter password" name="pswd">
+                     <div class="invalid-feedback text-danger" id="signup_password_val"></div>
                   </div>
                   <div class="mb-3">
                     <label for="pwd">Confirm Password:</label>
                     <input type="password" class="form-control" id="signup_confirm_pwd" placeholder="Confirm password" name="pswd">
+                     <div class="invalid-feedback text-danger" id="signup_Con_password_val"></div>
                   </div>
                   <div class="mb-3">
                     <label for="Location">Location:</label>
-                    <input type="text" class="form-control" id="Location" placeholder="Location" name="Location">
+                    <input type="text" class="form-control" id="Loction" placeholder="Location" name="Location">
                   </div>
+                  <div class="invalid-feedback text-danger" id="signup_location_val"></div>
                   <button type="button" class="btn btn-outline-danger" id="signup_button">Submit</button>
               </div>
 
@@ -162,5 +167,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="js/main.js"></script>
     <script src="js/login.js"></script>
+    <script src="js/signup.js"></script>
 </body>
 </html>
