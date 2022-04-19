@@ -52,14 +52,13 @@ $(document).ready(function()
         .then((json) => location.assign("products_page.html"));
     })
 
-    // $(".content").click(function()
-    // {
-    //     $("button.navbar-toggler").click();
-    //     // $("button.navbar-toggler").fadeOut("slow");
-    // });
     $('.content').on('click', function(){
         $('.navbar-collapse').collapse('hide');
     });
+
+    
+    
+    
 
     
 });
