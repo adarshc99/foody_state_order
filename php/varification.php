@@ -9,7 +9,7 @@ session_start();
 
 if(isset($_SESSION['Uemail']) && isset($_SESSION["Uname"]))
 {
-    $sql = "SELECT Varification_Code FROM signup WHERE Email = '{$_SESSION["Uemail"]}'";
+    $sql = "SELECT * FROM signup WHERE Email = '{$_SESSION["Uemail"]}'";
     // if(mysqli_num_rows($))
     $result = mysqli_query($con,$sql);
     
@@ -17,6 +17,8 @@ if(isset($_SESSION['Uemail']) && isset($_SESSION["Uname"]))
         {
             if($V_code == $row["Varification_Code"])
                 {
+                    include "cutomer_insert_config.php";
+                    
                 
                     echo json_encode(array("status"=>true,"value"=>1)); // Mathched Varification
                     // header('Location: http://localhost/foody_state/products_page.html');

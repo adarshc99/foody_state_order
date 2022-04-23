@@ -1,5 +1,35 @@
 $(document).ready(function()
 {
+    // To show User name Popup
+    fetch('php/UserName_and_Email_set.php', 
+        {
+            method: 'GET',
+            headers: {
+                'Content-type': 'application/json',
+            },
+        })
+        .then((response) => response.json())
+        .then((json) => 
+        {
+            
+            $("#myModal").html(`<div class="modal-dialog">
+                                        
+                                        <div class="alert alert-success">
+                                        <strong>Hello ${json["value"]}</strong>.
+                                        </div>
+
+                                        
+                            </div>`);
+            $("#myModal").modal("show");
+        });
+    
+    setTimeout(function()
+    {
+        $("#myModal").modal("hide");
+    },2000)
+
+
+
     let home_page = ()=>{
         fetch('php/food_fetch.php', 
         {
