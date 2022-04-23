@@ -1,5 +1,20 @@
 $(document).ready(function()
 {
+        fetch('php/UserName_and_Email_set.php', 
+        {
+            headers: {
+                'Content-type': 'application/json',
+            },
+        })
+        .then((response) => response.json())
+        .then((json) => 
+        {
+            if(json["status"] == true)
+            {
+                location.assign("products_page.html");
+            }
+        });
+
     $('.content').on('click', function(){
         $('.navbar-collapse').collapse('hide');
     });
