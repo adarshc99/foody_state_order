@@ -90,6 +90,28 @@ $(document).ready(function()
                  Uloction = document.getElementById("Loction").value = "";
                  atposition = "";  
                  dotposition = "";  
+                 $("#myModal").html(`<div class="modal-dialog">
+                 <div class="modal-content">
+             
+                   <!-- Modal Header -->
+                   <div class="modal-header">
+                     <h4 class="modal-title">Varification Code</h4>
+                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                   </div>
+             
+                   <!-- Modal body -->
+                   <div class="modal-body">
+                    <input type="text" name="varification_code" id="varification_code" placeholder="Enter Code Here" class="form-control" autocomplete="off">
+                    <div class="invalid-feedback text-danger" id="varification_error"></div>
+                   </div>
+             
+                   <!-- Modal footer -->
+                   <div class="modal-footer">
+                     <button type="button" class="btn btn-danger" id="btn-close-model">Submit</button>
+                   </div>
+             
+                 </div>
+               </div>`);
                  $('#myModal').modal('show'); // enter varification Code
             }
         });
@@ -98,5 +120,6 @@ $(document).ready(function()
 
 
     });
+  
 
 });

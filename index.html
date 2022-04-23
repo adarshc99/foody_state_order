@@ -12,7 +12,7 @@
     <div class="header">
         <nav class="navbar navbar-expand-sm bg-dark navbar-dark ">
             <div class="container-fluid">
-              <a class="navbar-brand  mx-3 mt-2 btn btn-danger" >F😋😋Y STATE</a>
+              <a class="navbar-brand  mx-3 mt-2 bg-danger text-white rounded px-3 " >F😋😋Y STATE</a>
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
                 <span class="navbar-toggler-icon"></span>
               </button>
@@ -85,12 +85,12 @@
                 <h2>Login</h2>
                   <div class="mb-3 mt-3">
                     <label for="email">Email:</label>
-                    <input type="email" class="form-control" id="login_email" placeholder="Enter email" name="email">
+                    <input type="email" class="form-control" id="login_email" placeholder="Enter email" name="email" autocomplete="off">
                     <div class="invalid-feedback text-danger" id="login_email_val"></div>
                   </div>
                   <div class="mb-3">
                     <label for="pwd">Password:</label>
-                    <input type="password" class="form-control" id="login_pwd" placeholder="Enter password" name="pswd">
+                    <input type="password" class="form-control" id="login_pwd" placeholder="Enter password" name="pswd" autocomplete="off">
                     <div class="invalid-feedback text-danger"  id="login_password_val"></div>
                   </div>
                   <button type="button" class="btn btn-outline-danger" id="login_btn">Submit</button>
@@ -105,30 +105,33 @@
                 <h2>SignUp</h2>
                   <div class="mb-3">
                     <label for="pwd">Name:</label>
-                    <input type="text" class="form-control" id="signup_name" placeholder="Enter Name" name="pswd">
+                    <input type="text" class="form-control" id="signup_name" placeholder="Enter Name" name="pswd" autocomplete="off">
                      <div class="invalid-feedback text-danger" id="signup_name_val"></div>
                   </div>
                   <div class="mb-3 mt-3">
                     <label for="email">Email:</label>
-                    <input type="email" class="form-control" id="signup_email" placeholder="Enter email" name="email">
+                    <input type="email" class="form-control" id="signup_email" placeholder="Enter email" name="email" autocomplete="off">
                      <div class="invalid-feedback text-danger" id="signup_email_val"></div>
+                     
+                    <!-- if user forget to enter varificatio code -->
                   </div>
                   <div class="mb-3">
                     <label for="pwd">Password:</label>
-                    <input type="password" class="form-control" id="signup_pwd" placeholder="Enter password" name="pswd">
+                    <input type="password" class="form-control" id="signup_pwd" placeholder="Enter password" name="pswd" autocomplete="off">
                      <div class="invalid-feedback text-danger" id="signup_password_val"></div>
                   </div>
                   <div class="mb-3">
                     <label for="pwd">Confirm Password:</label>
-                    <input type="password" class="form-control" id="signup_confirm_pwd" placeholder="Confirm password" name="pswd">
+                    <input type="password" class="form-control" id="signup_confirm_pwd" placeholder="Confirm password" name="pswd" autocomplete="off">
                      <div class="invalid-feedback text-danger" id="signup_Con_password_val"></div>
                   </div>
                   <div class="mb-3">
                     <label for="Location">Location:</label>
-                    <input type="text" class="form-control" id="Loction" placeholder="Location" name="Location">
+                    <input type="text" class="form-control" id="Loction" placeholder="Location" name="Location" autocomplete="off">
                   </div>
-                  <div class="invalid-feedback text-danger" id="signup_location_val"></div>
+                  <div class="invalid-feedback text-danger d-flex" id="signup_location_val"></div>
                   <button type="button" class="btn btn-outline-danger" id="signup_button">Submit</button>
+                  <button type="button" class="btn btn-outline-danger" id="Varification-Enter">Varification Code</button>
               </div>
 
 
@@ -138,27 +141,7 @@
     </div>
 
     <div class="modal" id="myModal">
-      <div class="modal-dialog">
-        <div class="modal-content">
-    
-          <!-- Modal Header -->
-          <div class="modal-header">
-            <h4 class="modal-title">Varification Code</h4>
-            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-          </div>
-    
-          <!-- Modal body -->
-          <div class="modal-body">
-           <input type="text" name="varification_code" id="varification_code" placeholder="Enter Code Here" class="form-control">
-          </div>
-    
-          <!-- Modal footer -->
-          <div class="modal-footer">
-            <button type="button" class="btn btn-danger" id="btn-close-model">Submit</button>
-          </div>
-    
-        </div>
-      </div>
+      
     </div>
   
 
