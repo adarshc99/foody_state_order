@@ -16,7 +16,7 @@ if(mysqli_num_rows($result)>0)
     echo json_encode(array("status"=>false,"value"=>"User Already Exsist"));
     die();
 }
-$sql_insert = "INSERT INTO signup (Name,Email,Password,Location,Varification_Code) VALUES ('{$User_name}','{$Email_name}','{$Password_name}','{$Loction}','{$Random_number}')";
+$sql_insert = "INSERT INTO signup (Name,Email,Password,Location,Varification_Code,Entered_Code) VALUES ('{$User_name}','{$Email_name}','{$Password_name}','{$Loction}','{$Random_number}','NO')";
 
 if(mysqli_query($con,$sql_insert))
 {

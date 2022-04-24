@@ -52,6 +52,7 @@ $(document).ready(function()
     {
         let Varification_Code = document.getElementById("varification_code").value;
         let obj = {Varification_Code};
+        console.log(obj);
         fetch('php/varification.php', 
         {
             method: 'POST',
@@ -73,14 +74,17 @@ $(document).ready(function()
             {
                 document.getElementById("varification_error").style.display = "block";
                 document.getElementById("varification_error").innerText = "Wrong Varification Code";
-                
-                // $('#Renter_varification_code_error').html("Wrong Varification Code");
-                // $("#Renter_varification_code_error").css("display","block");
+                return;
+            }
+            else if(json["value"] == 4)
+            {
+                document.getElementById("varification_error").style.display = "block";
+                document.getElementById("varification_error").innerText = "You Have Already Varified Your Email,Please Go To Login";
                 return;
             }
             else
             {   
-                document.getElementById("varification_error").innerHTML = "Please Go To Varification Code Button";
+                document.getElementById("varification_error").innerHTML = "Please GO To Varification Code Button";
                 document.getElementById("varification_error").style.display = "block";
                 return;
 
@@ -138,6 +142,7 @@ $(document).ready(function()
             {
                 document.getElementById("Renter_varification_code_error").innerHTML = json["value"];
                 document.getElementById("Renter_varification_code_error").style.display = "block";
+                
                 return; 
             }
         });

@@ -35,7 +35,7 @@ $(document).ready(function()
         };
 
 
-        fetch('php/varification_through_external_btn.php', 
+        fetch('php/user_login.php', 
         {
             method: 'POST',
             body: JSON.stringify(obj),
@@ -46,15 +46,28 @@ $(document).ready(function()
         .then((response) => response.json())
         .then((json) => 
         {
+            if(json["status"] == true)
+            {
+                $("#login_email").val("");
+                $("#login_pwd").val("");
+                location.assign("products_page.html");
+            }
+            else
+            {
+                document.getElementById("login_email_val").innerHTML = json["value"];
+                document.getElementById("login_email_val").style.display = "block";
+                return;  
+
+            }
         });
 
 
 
-        $("#login_email").val("");
-        $("#login_pwd").val("");
+       
         
-        // fetach function here
-        location.assign("products_page.html")
+        // fetch function here
+
+        
        
 
         
