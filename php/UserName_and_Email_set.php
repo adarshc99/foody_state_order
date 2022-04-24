@@ -1,9 +1,9 @@
 <?php
 
     session_start();
-    if(isset($_SESSION['Uname']) && isset($_SESSION['Uemail']))
+    if(isset($_SESSION["User_Name_insert"]) && isset($_SESSION["User_Email_insert"]))
     {
-        echo json_encode(array("status"=>true,"value"=>$_SESSION['Uname']));
+        echo json_encode(array("status"=>true,"value"=>$_SESSION['User_Name_insert']));
     }
     else
     {

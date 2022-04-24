@@ -11,8 +11,9 @@ $(document).ready(function()
         .then((response) => response.json())
         .then((json) => 
         {
-            
-            $("#myModal").html(`<div class="modal-dialog">
+            if(json["status"] == true)
+            {
+                $("#myModal").html(`<div class="modal-dialog">
                                         
                                         <div class="alert alert-success">
                                         <strong>Hello ${json["value"]}</strong>.
@@ -21,12 +22,18 @@ $(document).ready(function()
                                         
                             </div>`);
             $("#myModal").modal("show");
+            }
+            else
+            {
+                location.replace("index.html");
+                return;
+            }
         });
     
     setTimeout(function()
     {
         $("#myModal").modal("hide");
-    },2000)
+    },2000);
 
 
 
@@ -132,8 +139,43 @@ $(document).ready(function()
     {
         home_page();
     });
+
+
+    // logout Code
     $("#Logout").on("click",function(e)
     {
+        fetch('php/user_logout.php', 
+        {
+            method: 'GET',
+            headers: {
+                'Content-type': 'application/json',
+            },
+        })
+        .then((response) => response.json())
+        .then((json) => 
+        {
+            if(json["status"] == true)
+            {
+                location.replace("index.html");
+            }
+            else
+            {
+                $("#myModal").html(`<div class="modal-dialog">
+                                        
+                                        <div class="alert alert-success">
+                                        <strong>Hello ${json["value"]}</strong>.
+                                        </div>
+
+                                        
+                            </div>`);
+            $("#myModal").modal("show");
+            }
+            setTimeout(function()
+            {
+                $("#myModal").modal("hide");
+            },2000);
+        });
+
         document.getElementsByClassName("content").item(0).innerHTML = `
                                                     <div class="container mt-3">
                                                     <h2>Home in</h2>

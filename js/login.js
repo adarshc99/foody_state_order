@@ -27,6 +27,29 @@ $(document).ready(function()
             document.getElementById("login_email_val").style.display = "block";
             return;  
         }
+
+
+        let obj = {
+            User_email,
+            User_password
+        };
+
+
+        fetch('php/varification_through_external_btn.php', 
+        {
+            method: 'POST',
+            body: JSON.stringify(obj),
+            headers: {
+                'Content-type': 'application/json',
+            },
+        })
+        .then((response) => response.json())
+        .then((json) => 
+        {
+        });
+
+
+
         $("#login_email").val("");
         $("#login_pwd").val("");
         

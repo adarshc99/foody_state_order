@@ -17,9 +17,16 @@ if(isset($_SESSION['Uemail']) && isset($_SESSION["Uname"]))
         {
             if($V_code == $row["Varification_Code"])
                 {
-                    include "cutomer_insert_config.php";
+                    $sql_insert_login = "INSERT INTO login_user(Name,Email,Password,Loction) VALUES ('{$row["Name"]}','{$row["Email"]}','{$row["Password"]}','{$row["Location"]}')";
+
                     
-                
+                    $_SESSION["User_Name_insert"] = $row["Name"];
+                    $_SESSION["User_Email_insert"] = $row["Email"];
+                    if(!(mysqli_query($con,$sql_insert_login)))
+                    {
+                        echo json_encode(array("status"=>false,"value"=>"Query Failed"));
+                        die();
+                    }
                     echo json_encode(array("status"=>true,"value"=>1)); // Mathched Varification
                     // header('Location: http://localhost/foody_state/products_page.html');
                 }
