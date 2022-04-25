@@ -14,13 +14,11 @@ $(document).ready(function()
             if(json["status"] == true)
             {
                 $("#myModal").html(`<div class="modal-dialog">
-                                        
                                         <div class="alert alert-success">
                                         <strong>Hello ${json["value"]}</strong>.
-                                        </div>
-
-                                        
+                                        </div>  
                             </div>`);
+                $(".badge").html(json["cart"]);
             $("#myModal").modal("show");
             }
             else
@@ -77,7 +75,7 @@ $(document).ready(function()
                                             </div>
                             
                                             <!-- Modal footer -->
-                                            <div class="modal-footer bg-dark d-flex ">
+                                            <div class="modal-footer bg-dark d-flex">
                                             
                                                     <div class="p-2  flex-fill text-center rounded text-danger alert alert-warning ">
                                                         ${json[i]["Price"]}
@@ -86,7 +84,7 @@ $(document).ready(function()
                                                         </i>
                                                     </div>
                                                 
-                                                    <button type="button" class="btn-fav btn btn-danger bg-danger  flex-fill text-dark rounded" data-bs-dismiss="modal" data-id=${json[i]["ID"]}>
+                                                    <button type="button" class="btn-fav btn btn-danger bg-danger  flex-fill text-dark rounded" data-bs-dismiss="modal" data-id=${json[i]["ID"]} id="btn-for-fav">
                                                         <span class="material-icons-two-tone">
                                                         favorite_border
                                                         </span>
@@ -184,10 +182,11 @@ $(document).ready(function()
     
 
     // add to cart add function
-    $(document).on("click",".btn-fav",function()
+    $(document).on("click","#btn-for-fav",function()
     {
         // console.log($(this).attr("data-id"));
-        obj = {"food_ID":$(this).attr("data-id")}
+        
+        obj = {"food_ID":$(this).attr("data-id")};
         fetch('php/add_fav_food.php', 
         {
             method: 'POST',
@@ -197,8 +196,34 @@ $(document).ready(function()
             },
         })
         .then((response) => response.json())
-        .then((json) => console.log(json));
+        .then((json) => {
+            let Result_show_cart = json["value"];  
+            if(json["status"] == true)
+            {
+                $(".badge").html(json["cart"]);
+                $("#myModal").html(`<div class="modal-dialog">                          
+                <div class="alert alert-success">
+                <strong>${Result_show_cart}</strong>.
+                </div>     
+                </div>`);
+                $("#myModal").modal("show");
+            }
+            else
+            {
+                
+                $("#myModal").html(`<div class="modal-dialog ">                          
+                <div class="alert alert-success bg-danger text-white">
+                <strong>${Result_show_cart}</strong>.
+                </div>     
+                </div>`);
+                $("#myModal").modal("show");
+
+            }
+            
+        });
+        setTimeout(()=>$("#myModal").modal("hide"),2000);
     });
+    
     $(".Search-bar").on("focus",function()
     {
         home_page();
