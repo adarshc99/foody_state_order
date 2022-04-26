@@ -5,50 +5,51 @@ $decode = json_decode($input,true);
 $Get_food_ID = $decode["food_ID"];
 
 session_start();
-// echo $_SESSION['Uname'];
-// echo $_SESSION['Uemail'];
 if(isset($_SESSION["User_Name_insert"]) && isset($_SESSION["User_Email_insert"])) 
 {
     $get_user_email = $_SESSION["User_Email_insert"];
-    // echo $_SESSION["User_Email_insert"];
     $sql = "SELECT * FROM login_user WHERE Email = '{$_SESSION['User_Email_insert']}'";
-    // echo $sql."</br>";
     $result = mysqli_query($con,$sql);
-
     if(mysqli_num_rows($result)>0)
     {
-        
-        $output = mysqli_fetch_all($result,MYSQLI_ASSOC);
-        if($output[0]["ADD_NEXT"]<=5 && $output[0]["ADD_NEXT"]>0)
-        {
-            $sql_insert_cart = "UPDATE login_user SET ADD".$output[0]["ADD_NEXT"]. "= {$Get_food_ID} WHERE ID = {$output[0]['ID']};";
-            $sql_insert_cart .= "UPDATE login_user SET ADD_NEXT = (ADD_NEXT+1) WHERE ID = {$output[0]['ID']}"; // Upadte add_next and add item in DB
-            if(mysqli_multi_query($con,$sql_insert_cart))
+        $row = mysqli_fetch_assoc($result); 
+        // echo "<pre>";
+        // print_r($row);
+        $add_to_cart_free = 0;
+        for ($i=1; $i <=5 ; $i++) 
+        { 
+            $item = "ADD".$i;
+            if($row[$item] != "NULL")
             {
-                echo json_encode(array("status"=>true,"cart"=>$output[0]["ADD_NEXT"],"value"=>"Item added successfully"));
+                $add_to_cart_free+=1;
             }
-            else
-            {
-                echo json_encode(array("status"=>false,"value"=>"There was some problem,Please try again"));
-            }
-
-            
+            // echo $row[$item];
         }
-        else
+        if($add_to_cart_free == 5)
         {
             echo json_encode(array("status"=>false,"value"=>"You cart is full,Please empty your cart"));
-
+            die();
         }
-      
-
-
-
-    }
-   
-    
-
-    
-    
+        $flag = 0;
+        for ($i=1; $i <=5 ; $i++) 
+        { 
+            $item = "ADD".$i;
+            if($row[$item] == "NULL")
+            {
+                $sql_insert_cart = "UPDATE login_user SET ".$item. "= {$Get_food_ID} WHERE ID = {$row['ID']}";
+                // echo json_encode(array("value"=>$sql_insert_cart));
+                if(mysqli_query($con,$sql_insert_cart))
+                {
+                    echo json_encode(array("status"=>true,"cart"=>$add_to_cart_free,"value"=>"Item added successfully"));
+                    die();
+                }
+                else
+                {
+                    echo json_encode(array("status"=>false,"value"=>"There was some problem,Please try again"));
+                }
+            }
+        }   
+    }  
 }
 else{
     echo json_encode(array("status"=>false));

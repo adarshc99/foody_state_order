@@ -104,34 +104,68 @@ $(document).ready(function()
         });
     }
     home_page();
+    // fav food display
+
+    var favorite_page = ()=>
+    {
+        fetch('php/add_fav_item_display.php', 
+        {
+            method: 'GET',
+            headers: {
+                'Content-type': 'application/json',
+            },
+        })
+        .then((response) => response.json())
+        .then((json) => 
+        {
+            let add_to_fav_display = `<div class="modal-body">
+                                            <div class="row row-cols-1">
+                                            <div class="col">
+                                            <div class="d-flex justify-content-between mb-3 bg-danger rounded-1">        
+                                            <div class="p-2 ">FOOD</div>
+                                            <div class="p-2 ">FOOD NAME</div>
+                                            <div class="p-2 ">PRICE/ITEM</div>
+                                            <div class="p-2">Delete</div></div>
+                                            </div>
+                                            <div class="col">`;
+            for (let index = 0; index < json.length-1; index++) 
+            {
+                add_to_fav_display += `<div class="d-flex justify-content-between mb-3 alert alert-success">        
+                                    <div class="p-2 "><img src=images/${json[index]["Image"]} width=50px height=50px></div>
+                                    <div class="p-2 ">${json[index]["Food_Name"]}</div>
+                                    <div class="p-2 ">${json[index]["Price"]}<i class="material-icons-two-tone" style="font-size:14px;">
+                                    currency_rupee
+                                    </i></div>
+                                    <button type="button" class="btn-fav-del btn btn-danger p-2 bg-primary" data-id=${json[index]["add_to_cart_id"]}><span class="material-symbols-sharp">
+                                    delete
+                                    </span></button></div>`;
+
+            }
+            // document.getElementsByClassName("content").item(0).innerHTML = `
+            
+
+           
+            add_to_fav_display += `</div></div></div>
+            <div class="modal-footer">
+                <div class="p-2 flex-fill text-center rounded text-danger alert alert-warning" data-bs-dismiss="modal">Total Price:-${json[(json.length)-1]["Total"]}<i class="material-icons-two-tone" style="font-size:14px;">
+                currency_rupee
+                </i></div>
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Pay</button>
+            </div>`;
+            document.getElementsByClassName("content").item(0).innerHTML = add_to_fav_display;
+        });
+    }
+
+    // onclick event for delete fav food
+    $(document).on("click",".btn-fav-del",function()
+    {
+        $(this).closest(".d-flex").hide(3000);
+    });
    
-    $("#favorite").on("click",function(e)
+    $("#favorite").on("click",function()
     {
         
-            document.getElementsByClassName("content").item(0).innerHTML = `
-            <div class="modal-body">
-            <div class="row row-cols-1">
-                <div class="col">
-                    <div class="d-flex justify-content-between  mb-3 alert alert-success">
-                        <div class="p-2 bg-info">Flex item 1</div>
-                        <div class="p-2 bg-warning">Flex item 2</div>
-                        <div class="p-2 bg-primary">Delete</div>
-                      </div>
-                      <div class="d-flex justify-content-between  mb-3 alert alert-success">
-                      <div class="p-2 bg-info">Flex item 1</div>
-                      <div class="p-2 bg-warning">Flex item 2</div>
-                      <div class="p-2 bg-primary">Flex item 3</div>
-                    </div>
-
-              </div>
-        </div>
-
-        <!-- Modal footer -->
-        <div class="modal-footer">
-            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-        </div>
-
-        </div>`;
+            favorite_page();
     });
     $("#menu").on("click",function(e)
     {
@@ -161,7 +195,7 @@ $(document).ready(function()
                 $("#myModal").html(`<div class="modal-dialog">
                                         
                                         <div class="alert alert-success">
-                                        <strong>Hello ${json["value"]}</strong>.
+                                        <strong>There Was Some Probelem in the logout ,Please try again!!!</strong>.
                                         </div>
 
                                         
@@ -173,11 +207,6 @@ $(document).ready(function()
                 $("#myModal").modal("hide");
             },2000);
         });
-
-        document.getElementsByClassName("content").item(0).innerHTML = `
-                                                    <div class="container mt-3">
-                                                    <h2>Home in</h2>
-                                                </div>`;
     });
     
 
