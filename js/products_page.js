@@ -18,7 +18,7 @@ $(document).ready(function()
                                         <strong>Hello ${json["value"]}</strong>.
                                         </div>  
                             </div>`);
-                $(".badge").html(json["cart"]);
+                $("#add_item").html(json["cart"]);
             $("#myModal").modal("show");
             }
             else
@@ -147,7 +147,7 @@ $(document).ready(function()
            
             add_to_fav_display += `</div></div></div>
             <div class="modal-footer">
-                <div class="p-2 flex-fill text-center rounded text-danger alert alert-warning" data-bs-dismiss="modal">Total Price:-${json[(json.length)-1]["Total"]}<i class="material-icons-two-tone" style="font-size:14px;">
+                <div class="p-2 flex-fill text-center rounded text-danger alert alert-warning" data-bs-dismiss="modal">Total Price:   ${json[(json.length)-1]["Total"]}<i class="material-icons-two-tone" style="font-size:14px;">
                 currency_rupee
                 </i></div>
                 <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Pay</button>
@@ -159,8 +159,50 @@ $(document).ready(function()
     // onclick event for delete fav food
     $(document).on("click",".btn-fav-del",function()
     {
-        $(this).closest(".d-flex").hide(3000);
+        obj = {"food_ID":$(this).attr("data-id")};
+        fetch('php/fav_food_delete.php', 
+        {
+            method: 'POST',
+            body: JSON.stringify(obj),
+            headers: {
+                'Content-type': 'application/json',
+            },
+        })
+        .then((response) => response.json())
+        .then((json) => {
+            
+                if(json["status"] == true)
+                {
+                    $("#myModal").html(`<div class="modal-dialog">
+                    <div class="alert alert-success">
+                    <strong>${json["value"]}</strong>.
+                    </div>  
+                    </div>`);
+                    $("#add_item").html(json["cart"]);
+                
+                }
+                else
+                {
+                    $("#myModal").html(`<div class="modal-dialog">
+                    <div class="alert alert-success bg-danger text-white">
+                    <strong>${json["value"]}</strong>.
+                    </div>  
+                    </div>`);
+                    
+                }
+
+                $("#myModal").modal("show");
+                $(this).closest(".d-flex").hide(3000);
+            
+        });
+        setTimeout(function()
+    {
+        $("#myModal").modal("hide");
+        favorite_page();
+    },2000);
+        
     });
+    
    
     $("#favorite").on("click",function()
     {
@@ -225,11 +267,12 @@ $(document).ready(function()
             },
         })
         .then((response) => response.json())
-        .then((json) => {
+        .then((json) => 
+        {
             let Result_show_cart = json["value"];  
             if(json["status"] == true)
             {
-                $(".badge").html(json["cart"]);
+                $("#add_item").html(json["cart"]);
                 $("#myModal").html(`<div class="modal-dialog">                          
                 <div class="alert alert-success">
                 <strong>${Result_show_cart}</strong>.
