@@ -25,7 +25,7 @@ if(isset($_SESSION["User_Name_insert"]) && isset($_SESSION["User_Email_insert"])
         }
     if(mysqli_query($con,$sql))
     {
-        echo json_encode(array("status"=>true,"value"=>"Ieam removed Successfully","cart"=>$add_to_cart_free));
+        echo json_encode(array("status"=>true,"value"=>"Removed Successfully","cart"=>$add_to_cart_free));
     }
     else
     {

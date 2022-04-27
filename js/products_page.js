@@ -1,5 +1,32 @@
 $(document).ready(function()
 {
+    // no of cart item show
+    var flag = 0;
+    var cart_item_fetch = ()=>
+    {
+        fetch('php/cart_item.php', 
+        {
+            method: 'GET',
+            headers: {
+                'Content-type': 'application/json',
+            },
+        })
+        .then((response) => response.json())
+        .then((json) => 
+        {
+            if(json["status"]==true && json["cart"]>0)
+            {
+                $("#add_item").html(json["cart"]);
+                flag = 1;
+            }
+            else
+            {
+                // document.getElementsByClassName("content").item(0).innerHTML = `<p class="h3 w-25 m-auto"><kbd>No record found</kbd></p>`;
+                $("#add_item").html("0");
+                flag = 0;
+            }
+        });
+    }
     // To show User name Popup
     fetch('php/UserName_and_Email_set.php', 
         {
@@ -18,7 +45,7 @@ $(document).ready(function()
                                         <strong>Hello ${json["value"]}</strong>.
                                         </div>  
                             </div>`);
-                $("#add_item").html(json["cart"]);
+                            cart_item_fetch();
             $("#myModal").modal("show");
             }
             else
@@ -118,7 +145,9 @@ $(document).ready(function()
         .then((response) => response.json())
         .then((json) => 
         {
-            let add_to_fav_display = `<div class="modal-body">
+            let add_to_fav_display = ``;
+            if(flag)
+            {add_to_fav_display = `<div class="modal-body">
                                             <div class="row row-cols-1">
                                             <div class="col">
                                             <div class="d-flex justify-content-between mb-3 bg-danger rounded-1">        
@@ -151,10 +180,17 @@ $(document).ready(function()
                 currency_rupee
                 </i></div>
                 <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Pay</button>
-            </div>`;
+            </div>`;}
+            else
+            {
+                add_to_fav_display = `<p class="h3 w-25 m-auto"><kbd>No record found</kbd></p>`;
+
+            }
             document.getElementsByClassName("content").item(0).innerHTML = add_to_fav_display;
         });
     }
+
+   
 
     // onclick event for delete fav food
     $(document).on("click",".btn-fav-del",function()
@@ -178,7 +214,8 @@ $(document).ready(function()
                     <strong>${json["value"]}</strong>.
                     </div>  
                     </div>`);
-                    $("#add_item").html(json["cart"]);
+                    cart_item_fetch();
+                    
                 
                 }
                 else
@@ -190,15 +227,19 @@ $(document).ready(function()
                     </div>`);
                     
                 }
+                if(!flag)
+                {
+                    
+                    document.getElementsByClassName("content").item(0).innerHTML =`<p class="h3 w-25 m-auto"><kbd>No record found</kbd></p>`;
+                }
 
                 $("#myModal").modal("show");
-                $(this).closest(".d-flex").hide(3000);
+                favorite_page();
             
         });
         setTimeout(function()
     {
         $("#myModal").modal("hide");
-        favorite_page();
     },2000);
         
     });
@@ -272,13 +313,14 @@ $(document).ready(function()
             let Result_show_cart = json["value"];  
             if(json["status"] == true)
             {
-                $("#add_item").html(json["cart"]);
+               
                 $("#myModal").html(`<div class="modal-dialog">                          
                 <div class="alert alert-success">
                 <strong>${Result_show_cart}</strong>.
                 </div>     
                 </div>`);
                 $("#myModal").modal("show");
+                cart_item_fetch();
             }
             else
             {
